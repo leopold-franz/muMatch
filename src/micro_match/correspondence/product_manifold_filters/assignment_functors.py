@@ -22,7 +22,7 @@ class elastic_assignment_functor:
 
     def __call__(self, P):
         P = self.reduce_scalar(P.T).T
-        nx, ny = [int(0.05 * s) for s in P.shape]
+        nx, ny = (int(0.05 * s) for s in P.shape)
         fsbl = np.logical_or(
             util.first_n(-P, nx, axis=0), util.first_n(-P, ny, axis=1)
         )

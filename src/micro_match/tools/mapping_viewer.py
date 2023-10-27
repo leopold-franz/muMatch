@@ -7,7 +7,6 @@ import vtk
 class MouseInteractorPlacePoint(vtk.vtkInteractorStyleTrackballCamera):
     # TODO
     def __init__(self, _sphere1, _sphere2, _render1, _render2, _data1, _data2):
-
         self.AddObserver("LeftButtonPressEvent", self.leftButtonPressEvent)
         self.sphere1 = _sphere1
         self.sphere2 = _sphere2
@@ -32,7 +31,7 @@ class MouseInteractorPlacePoint(vtk.vtkInteractorStyleTrackballCamera):
     def clickDistance(self, clickPosition):
         dx = clickPosition[0] - self.PreviousPosition[0]
         dy = clickPosition[1] - self.PreviousPosition[1]
-        moveDistance = np.sqrt(dx ** 2 + dy ** 2)
+        moveDistance = np.sqrt(dx**2 + dy**2)
         return moveDistance
 
     def placePoint(self, clickPos):

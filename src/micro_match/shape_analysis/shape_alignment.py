@@ -54,7 +54,7 @@ def thin_plate_spline(x0, y0, x):
 
 
 def deformation_transform(src, dst, *args):
-    cs, cd = [m.centroid() for m in (src, dst)]
+    cs, cd = (m.centroid() for m in (src, dst))
     R = util.orthogonalProcrustes(dst.v - cd, src.v - cs)
     for x in args:
         x.shift(-cs).rotate(R).shift(cd)
@@ -66,7 +66,7 @@ def nearest_neighbours(src, dst, quadratic=False, return_points=True):
     idx = np.isnan(d)
     d /= d[~idx].mean()
     d[idx] = 2 * d[~idx].max()
-    cost = d ** 2 if quadratic else np.abs(d)
+    cost = d**2 if quadratic else np.abs(d)
     i, j = linear_sum_assignment(cost, maximize=False)
     res = dst[j] if return_points else np.stack([i, j], axis=0)
     return res

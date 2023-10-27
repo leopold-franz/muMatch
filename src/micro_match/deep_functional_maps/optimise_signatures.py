@@ -8,7 +8,6 @@ from .training import ensembleTrainer
 
 
 def process_directory(data_dir, checkpoint_dir, config, mesh_type):
-
     # Parameter extraction
     num_signatures = sum(
         config[f"number_{s}"] for s in ["hks", "wks", "gaussian"]
@@ -17,10 +16,10 @@ def process_directory(data_dir, checkpoint_dir, config, mesh_type):
         0.95 * config["number_vertices"]
     )  # because decimate may go a few under
     number_epochs = config["deep_functional_maps"]["epochs"]
-    lr, bs = [
+    lr, bs = (
         config["deep_functional_maps"][k]
         for k in ["learning_rate", "batch_size"]
-    ]
+    )
 
     # Data preparation
     generate_TFRecord(data_dir, num_vertices, mesh_type)

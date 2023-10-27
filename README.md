@@ -15,19 +15,6 @@ conda activate mumatch
 pip install .
 ```
 
-## Installation for development mode
-
- - Clone the repository.
- - Create a conda virtual environment and install the package
- - Install the project using the source in [editable mode](https://packaging.python.org/guides/distributing-packages-using-setuptools/#working-in-development-mode)
-```bash
-git clone <this repo url>
-cd muMatch
-conda env create -f environment.yml
-conda activate mumatch
-pip install --editable .
-```
-
 ## Getting started
 
 Once the package has been installed the pipeline can be tested with:

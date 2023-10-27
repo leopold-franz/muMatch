@@ -48,7 +48,7 @@ def generate_TFRecord(dir_in, N, output_name):
             np.float32
         )
         eigen = np.load(os.path.join(dir_in, "eigen", fn + ".npz"))
-        e, e_t = [eigen[k].astype(np.float32) for k in ["evecs", "evecs_t"]]
+        e, e_t = (eigen[k].astype(np.float32) for k in ["evecs", "evecs_t"])
         g = np.load(
             os.path.join(dir_in, "geodesic_matrices", fn + ".npy")
         ).astype(np.float32)

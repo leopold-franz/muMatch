@@ -28,7 +28,6 @@ def readMesh(fn, normalise=False):
 
 
 def differenceMatrix(array1, array2=None, norm=True):
-
     """
     Pairwise distances between points in two arrays. Scales like N*M
     where N and M are the sizes of the point clouds in question.
@@ -81,7 +80,7 @@ def differenceMatrix(array1, array2=None, norm=True):
 
 def centre_and_norm(X):
     X -= np.mean(X, axis=0)
-    X /= np.sqrt(np.mean(np.sum(X ** 2, axis=-1)))
+    X /= np.sqrt(np.mean(np.sum(X**2, axis=-1)))
     return
 
 
@@ -108,7 +107,7 @@ def laplace_eigen_decomposition(
     l: np.array, m: np.array, k: int
 ) -> List[np.array]:
     evals, evecs = eigsh(A=-l, k=k, M=m, which="SM")
-    evecs /= np.sqrt(np.sum(m.dot(evecs ** 2), axis=0, keepdims=True))
+    evecs /= np.sqrt(np.sum(m.dot(evecs**2), axis=0, keepdims=True))
     return [evals, evecs]
 
 
@@ -183,7 +182,6 @@ def reorder_mesh(v, f, idx):
 
 
 def extractEdges(faces):
-
     if ~isinstance(faces, np.ndarray):
         faces = np.array(faces)
 
@@ -210,7 +208,6 @@ def boundaryVertices(faces):
 
 
 def meshNeighbours(faces):
-
     nodes_list = [[] for _ in range(50)]
     neighbours_list = [[] for _ in range(50)]
     numbers_list = []

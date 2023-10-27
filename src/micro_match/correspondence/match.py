@@ -54,7 +54,6 @@ class Match:
         self.config = config
 
     def __call__(self, f1, f2):
-
         src = self.loader(f1, normalise=True)
         dst = self.loader(f2, normalise=True)
 

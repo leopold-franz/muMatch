@@ -23,7 +23,6 @@ def pairwise(iterable):
 
 
 def _parse_function(input):
-
     _features = {
         "evecs": tf.io.FixedLenFeature([], tf.string),
         "evecs_t": tf.io.FixedLenFeature([], tf.string),
@@ -109,7 +108,7 @@ class ensembleTrainer:
                     print(f"Error caught: {e}")
             epoch_loss = self.loss.result()
             if epoch % print_interval == 0:
-                print("Epoch {}, Loss: {}".format(epoch + 1, 100 * epoch_loss))
+                print(f"Epoch {epoch + 1}, Loss: {100 * epoch_loss}")
             with self.summary_writer.as_default():
                 tf.summary.scalar("loss", epoch_loss, step=epoch)
             self.loss.reset_states()

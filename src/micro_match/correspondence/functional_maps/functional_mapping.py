@@ -90,9 +90,9 @@ def superOperatorPromotion(A, n):
 
 
 def initialisation(src, dst, k):
-    s1, s2 = [
+    s1, s2 = (
         m.pointwise_2_vector(m.scalars["signatures"], k) for m in (src, dst)
-    ]
+    )
     l1, l2 = np.meshgrid(src.eigen[0][:k], dst.eigen[0][:k])
     # LHS
     A1 = superOperatorPromotion(s1.dot(s1.T), k)
@@ -128,6 +128,6 @@ def correspondenceMatrixSolver(src, dst, k, optimise=True):
 def soft_correspondence(src, dst, C):
     kd, ks = C.shape
     Q = src.mass @ src.eigen[-1][:, :ks] @ C.T @ dst.eigen[-1][:, :kd].T
-    P = Q ** 2
+    P = Q**2
     P /= np.sum(P, axis=1, keepdims=True)
     return P

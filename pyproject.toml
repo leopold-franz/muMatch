@@ -1,16 +1,40 @@
+[build-system]
+requires = [
+  "setuptools >= 56",
+  "wheel",
+  "setuptools_scm[toml]>=3.4"
+]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools_scm]
+write_to = "src/micro_match/_version.py"
+
 [tool.black]
+target-version = ['py38', 'py39', 'py310']
+skip-string-normalization = true
 line-length = 79
-include = '\.pyi?$'
 exclude = '''
-/(
-    \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
+(
+  /(
+      \.eggs
+    | \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | examples
+    | vendored
+    | _vendor
+  )/
+  | tools/minreq.py
+)
 '''
+
+[tool.isort]
+profile = "black"
+line_length = 79

@@ -99,6 +99,7 @@ class Mesh:
     """ ================================================ """
     """                 Getters and Setters              """
     """ ================================================ """
+
     # Vertices
     @property
     def v(self):
@@ -262,7 +263,7 @@ class Mesh:
     """ ================================================ """
 
     def decimate(self, N=None, frac=None):
-        v, f = [x.copy() for x in (self.v, self.f)]
+        v, f = (x.copy() for x in (self.v, self.f))
         _, v, f, _, idx = util.vedo_decimate(
             v, f, N=N, frac=frac
         )  # igl.decimate(self.v, self.f, target)
@@ -283,7 +284,7 @@ class Mesh:
         return res, idx
 
     def upsample(self, target):
-        v, f = [x.copy() for x in (self.v, self.f)]
+        v, f = (x.copy() for x in (self.v, self.f))
         idx: np.ndarray
         while v.shape[0] < target:
             v, f, idx = util.vedo_subdivide(v, f)

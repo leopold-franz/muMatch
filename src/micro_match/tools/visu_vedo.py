@@ -8,7 +8,6 @@ import vedo as vp
 __doc__ = "Visualise meshes put in correspondence"
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
         description=__doc__, prog="visualise_interactive"
     )

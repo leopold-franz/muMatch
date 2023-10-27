@@ -36,7 +36,7 @@ def wave_kernel_signature(evecs, evals, eps, sigma):
     """
     dE = util.differenceMatrix(eps, np.log(evals))
     gauss_kernel = np.exp(-0.5 * (dE / sigma) ** 2)
-    signatures = (evecs ** 2).dot(gauss_kernel)
+    signatures = (evecs**2).dot(gauss_kernel)
     signatures /= np.sum(gauss_kernel, axis=0, keepdims=True) + 1e-6
     return signatures
 
@@ -47,7 +47,7 @@ def heat_kernel_signature(evecs, evals, T):
     """
     omega = np.outer(evals, T)
     low_pass_filter = np.exp(-omega)
-    signatures = (evecs ** 2).dot(low_pass_filter)
+    signatures = (evecs**2).dot(low_pass_filter)
     signatures /= np.sum(low_pass_filter, axis=0, keepdims=True) + 1e-6
     return signatures
 
@@ -72,7 +72,7 @@ class DescriptorClass:
         hks = heat_kernel_signature(evecs[:, 1:], evals[1:], self.T)
         sigs = np.concatenate([wks, hks, kap], axis=-1)
         sigs /= (
-            np.sqrt(np.sum(mesh.mass @ sigs ** 2, axis=0, keepdims=True))
+            np.sqrt(np.sum(mesh.mass @ sigs**2, axis=0, keepdims=True))
             + 1e-6
         )
         return sigs

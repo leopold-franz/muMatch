@@ -64,7 +64,6 @@ def calculate_SHOT_descriptors(mesh, radius):
     elevation_bins = np.linspace(-1, 1, num=6, endpoint=False)
 
     def describe_vertex(feat_index):
-
         centralPoint = mesh.v[feat_index]
         neighs = neighbouringPoints(mesh, feat_index, radius)
         ref_X, ref_Y, ref_Z = getSHOTLocalRF(mesh, feat_index, neighs, radius)

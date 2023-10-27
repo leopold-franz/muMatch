@@ -18,7 +18,6 @@ def clean_mesh(vedo_mesh: vMesh):
 
 
 def batch_preprocess(dir_in, dir_out, config):
-
     loader = mesh_loader(dir_out, k=config["functional_dimension"], type="")
     dirs = {
         fn: os.path.join(dir_out, fn)
@@ -50,8 +49,8 @@ def batch_preprocess(dir_in, dir_out, config):
         if config["clean"]:
             mesh = clean_mesh(mesh)
         while mesh.N() < target_size:
-            mesh.subdivide(N=1, method=0)
-        mesh.decimate(N=target_size)
+            mesh.subdivide(n=1, method=0)
+        mesh.decimate(n=target_size)
         mesh.write(fout)
 
     print("\n" + 60 * "-")
@@ -72,7 +71,7 @@ def batch_preprocess(dir_in, dir_out, config):
     print("Calculating Laplacian eigendecomposition")
     print(60 * "-" + "\n")
 
-    sizes, minima, maxima = [[] for _ in range(3)]
+    sizes, minima, maxima = ([] for _ in range(3))
 
     for fn in tqdm(files):
         feigen = os.path.join(dirs["eigen"], fn + ".npz")
@@ -90,9 +89,9 @@ def batch_preprocess(dir_in, dir_out, config):
 
     emin = float(min(minima))
     emax = float(max(maxima))
-    num_hks, num_wks, num_gaussian = [
+    num_hks, num_wks, num_gaussian = (
         config[key] for key in ["number_hks", "number_wks", "number_gaussian"]
-    ]
+    )
     descriptor = fd.DescriptorClass(
         emin, emax, num_wks=num_wks, num_hks=num_hks, num_gaussian=num_gaussian
     )

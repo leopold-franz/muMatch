@@ -66,7 +66,6 @@ class PartitionViewer(vp.plotter.Plotter):
         self.__mesh.addPointArray(self.__partition, "partition")
 
     def partition_mesh(self):
-
         if len(self.__left) == 0:
             self.__partition = np.zeros(self.__partition.shape)
             return
@@ -119,7 +118,6 @@ class PartitionViewer(vp.plotter.Plotter):
 
 
 if __name__ == "__main__":
-
     dir = "/home/jamesklatzow/Documents/EBI/Preprocess/data/TOSCA"
 
     files = os.listdir(os.path.join(dir, "meshes"))
