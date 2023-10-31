@@ -179,7 +179,7 @@ def run_microMatch(
     return geodesic_distortions
 
 
-def run_micromatch_test():
+def test_run_micromatch():
     """
     Test microMatch pipeline with test data.
 
@@ -187,7 +187,9 @@ def run_micromatch_test():
     -------
         None
     """
-    example_data_dir = Path(__file__).resolve().parent.parent / "example_data"
+    example_data_dir = (
+        Path(__file__).resolve().parent.parent.parent / "example_data"
+    )
 
     run_microMatch(
         data_dir=str(example_data_dir),
